@@ -45,6 +45,8 @@ dependencies:
   getwidget: ^2.0.4
   http: ^0.13.0
   google_maps_flutter: ^2.3.0
+  url_launcher: ^6.0.0
+  flutter_custom_clippers: ^2.1.0
 
 
 
@@ -87,6 +89,7 @@ flutter:
     - assets/svg/Comondu_en_Baja_California_Sur.png
     - assets/images/mexicoflag.png
     - assets/images/uber.png
+    - assets/images/walmart.png
 
 
   # To add assets to your application, add an assets section, like this:

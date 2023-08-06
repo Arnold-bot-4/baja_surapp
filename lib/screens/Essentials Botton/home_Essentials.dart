@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../utils/app_styles.dart';
 import 'Components/essential_Grid.dart';
+import 'Essentials Buttons/Contacts/emergecy_Main.dart';
 import 'Essentials Buttons/Contacts/emergencyContact_Main.dart';
 import 'Essentials Buttons/Tools/currencyMoney_Main.dart';
 import 'Essentials Buttons/Tools/usefulapp_Main.dart';
@@ -211,7 +212,7 @@ class HomeEssentials extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => EmergencyContactMain(),
+                    builder: (context) => EmergecyMain(),
                   ),
                 );
               },
@@ -219,7 +220,7 @@ class HomeEssentials extends StatelessWidget {
                 width: 325,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlueAccent,
+                  color: Colors.black12,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
@@ -255,7 +256,7 @@ class HomeEssentials extends StatelessWidget {
               width: 325,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.lightBlueAccent,
+                color: Colors.black12,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)),

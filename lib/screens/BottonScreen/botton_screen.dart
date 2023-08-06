@@ -2,6 +2,7 @@ import 'package:baja_surapp/screens/Essentials Botton/home_Essentials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import '../Coupons/coupons_Main.dart';
 import '../Essentials Botton/home_Essentials.dart';
 import '../Home/home_screen.dart';
 import '../MapsScreen/main_Map.dart';
@@ -25,8 +26,8 @@ class _BottomBarState extends State<BottomBar>{
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const HomeEssentials(),
-   // const MapSample(),
-    const Text("Coupons"),
+    MapSample(),
+    const CouponsMain(),
   ];
 
   void _onItemTapped(int index)
