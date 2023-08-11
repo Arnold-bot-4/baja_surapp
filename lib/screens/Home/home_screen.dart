@@ -1,6 +1,6 @@
 import 'package:baja_surapp/screens/Home/Components/Recomedations/Reco_CategoryCard.dart';
 import 'package:baja_surapp/screens/Home/Components/TravelCategory/Travel_loading.dart';
-import 'package:baja_surapp/screens/home_carrouselP.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,7 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../utils/app_styles.dart';
 import '../../widgets/double_text_widget.dart';
 
-import '../carrousel_home.dart';
+
 import 'Components/Bar/ScrollableAppBar.dart';
 import 'Components/Carousel-First/carrousel_slider_view.dart';
 import 'Components/Recomedations/Reco_loading.dart';
@@ -62,8 +62,7 @@ class HomeScreen extends StatelessWidget {
 
 
           ),
-          //const CarrouselHome(),
-          //const BannerCard(),
+
           const CarouselSliderView(),
           const Gap(20),
           Row(
@@ -141,7 +140,6 @@ class HomeScreen extends StatelessWidget {
               )
             ],),
           const Gap(5),
-          //TravelScreen(),
           const RecoCategoryCard(),
          // const RecoLoading(),
           const Gap(15),
@@ -155,7 +153,7 @@ class HomeScreen extends StatelessWidget {
               )
             ],),
 
-          const TravelLoading(),
+           TravelLoading(),
           // Other widgets specific to Home screen
         ],
       ),
@@ -343,7 +341,7 @@ class Show_Info extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
         backgroundColor: Colors.grey[100],
-        appBar: AppBar(title: Text("TEST"),),
+        appBar: AppBar(title: Text("Medical Care"),),
 
         body: SingleChildScrollView(
 

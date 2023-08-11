@@ -213,33 +213,89 @@ class Show_Info extends StatelessWidget {
       appBar: AppBar(
         title: Text("TEST"),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/baja.jpg'),
-                  fit: BoxFit.cover,
+
+
+      body: SafeArea(
+
+
+
+
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 400,
+                height: MediaQuery.of(context).size.height * 0.20,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                 // image: DecorationImage(
+                    //image: AssetImage('assets/images/baja.jpg'),
+                    //fit: BoxFit.cover,
+                  //),
                 ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Consult Doctors" ,style: TextStyle(fontSize: 22),),
+                      Text("Get Expert Advice From Speacialist Doctors"),
+                    ],
+                  ),
+                ),
+
               ),
-            ),
-            Text(
-              "¿Dónde saco mi cita?",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
+              Gap(10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.red,
+                    width: 180,
+                    height: 180,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Diagnostics" ,style: TextStyle(fontSize: 22),),
+                          Text("Book Tests & Checkups"),
+                        ],
+                      ),
+                    )
+                  ),
+                  Container(
+                    color: Colors.blue,
+                    width: 180,
+                    height: 180,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Pharma" ,style: TextStyle(fontSize: 22),),
+                          Text("Medicines & health"),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              "El sitio donde podrás acceder al sistema de las citas es el siguiente: regularizaauto.sspc.gob.mx",
-              style: TextStyle(fontSize: 16.0),
-            ),
-          ],
+              Gap(10),
+              Container(
+                width: 400,
+                height: 100,
+                color: Colors.orange,
+              )
+
+
+            ],
+          ),
         ),
       ),
     );

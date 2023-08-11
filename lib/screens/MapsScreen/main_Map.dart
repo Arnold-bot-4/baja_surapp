@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'testApi/locations.dart' as locations;
 
 class MapSample extends StatefulWidget {
   const MapSample({super.key});
@@ -108,12 +110,41 @@ class MapSampleState extends State<MapSample> {
   //final Map<String, Marker> _markers = {};
  // Set<Marker> _markers = <Marker>{};
 
+  final Map<String, Marker> _markers = {};
+  Future<void> _onMapCreated(GoogleMapController controller) async {
+    final googleOffices = await locations.getGoogleOffices();
+    setState(() {
+      _markers.clear();
+      for (final office in googleOffices.offices) {
+        final marker = Marker(
+          markerId: MarkerId(office.name),
+          position: LatLng(office.lat, office.lng),
+          infoWindow: InfoWindow(
+            title: office.name,
+            snippet: office.address,
+          ),
+        );
+        _markers[office.name] = marker;
+      }
+    });
+  }
+
+
   @override
   void initState() {
     addCustomIcon();
     //WidgetsBinding.instance.addPostFrameCallback((_) => _onBuildCompleted());
     setCustomMarkerIcon();
+    _init();
     super.initState();
+  }
+
+  CameraPosition? _cameraPosition;
+  //Location? _location;
+
+  _init() async{
+    ///_location = Location();
+    _cameraPosition = CameraPosition(target: LatLng(0,0), zoom: 12);
   }
 
   void addCustomIcon() {
@@ -163,7 +194,7 @@ class MapSampleState extends State<MapSample> {
 
   void setCustomMarkerIcon(){
     BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(size: Size(2,2)), "assets/images/mexicoflag.png")
+        ImageConfiguration(devicePixelRatio: 2.5), "assets/images/mexicoflag.png")
         .then(
           (icon) {
         sourceIcon = icon;
@@ -171,28 +202,70 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
+  Widget _getMarker(LatLng position){
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: Colors.white,
+          shape: BoxShape.circle
+      ),
+      child: ClipOval(child: Image.asset("assets/images/uber.png" ,)),
+    );
+  }
+  LatLng markerPosition = LatLng(24.151408, -110.319537);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+         child: Stack(
+           children: [
+              GoogleMap(
+               /*onMapCreated: (controller) {
+                 mapController = controller;
+               },*/
+                onMapCreated: _onMapCreated,
+               initialCameraPosition: CameraPosition(target: initialLocation, zoom: 10),
+               markers: _markers.values.toSet(),
 
-         child: GoogleMap(
+               //markers: _markers.values.toSet(),
+               /*
+            Marker(
+              markerId: const MarkerId("marker1"),
+              position: const LatLng(24.151408,  -110.319537),
+              draggable: false,
+              onDrag: (value){},
+              icon: markerIcon,
+
+            ),
+            Marker(
+              markerId: const MarkerId("marker2"),
+              position: const LatLng(37.415768808487435, -122.08440050482749)
+            ),
+            Marker(
+              markerId: const MarkerId("marker3"),
+              position: const LatLng(24.1333, -110.3),
+              infoWindow: InfoWindow(title: "marker3"),
+
+            ),
+            */
+             ),
+/*
+             Positioned(child: Align(
+               alignment: Alignment.center,
+               child: _getMarker(markerPosition),
+             ))
+
+             */
+
+           ],
+         ),
+         /*child: GoogleMap(
            onMapCreated: (controller) {
              mapController = controller;
            },
-
           initialCameraPosition: CameraPosition(target: initialLocation, zoom: 10),
-         /* markers: customMarkers.map((marker){
-            return Marker(
-              markerId: MarkerId(marker.position.toString()),
-              position: marker.position,
-             // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-                icon: await _createCustomMarkerBitmap(marker.imagePath),
-              infoWindow: InfoWindow(title: "custom marker")
-              //icon: BitmapDescriptor.fromAssetImage('asset'),
-            );
-          }).toSet(),  */
-           //markers: Set<Marker>.of(_createMarkers()),
            markers: {
              Marker(
                markerId: MarkerId("SourceIcon"),
@@ -200,7 +273,8 @@ class MapSampleState extends State<MapSample> {
                position: LatLng(24.151408,-110.319537),
              )
 
-           }
+           },
+
           //markers: _markers.values.toSet(),
             /*
             Marker(
@@ -222,7 +296,9 @@ class MapSampleState extends State<MapSample> {
 
             ),
             */
-        ), //child: CircleMarker(),
+        ), */
+
+       //child: CircleMarker(),
       ),
     );
   }
